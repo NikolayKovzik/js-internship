@@ -76,7 +76,7 @@ function extractNameFromTemplate(value) {
 /**
  * Returns a first char of the given string.
  *
- * @param {string} value
+ * @param {string} value    
  * @return {string}
  *
  * @example
@@ -114,7 +114,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+    return value.repeat(count);
 }
 
 /**
