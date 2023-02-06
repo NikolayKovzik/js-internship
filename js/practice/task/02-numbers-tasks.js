@@ -128,7 +128,8 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    throw new Error('Not implemented');
+    const strValue = `${value}`;
+    return +strValue[strValue.length - 1]
 }
 
 
