@@ -225,7 +225,19 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+    let result = "";
+    for (let i = 0; i < str.length; i++) {
+        let charCode = str.charCodeAt(i) + 13;
+        if (charCode >= 78 && charCode <= 103) {
+            result += String.fromCharCode(charCode > 90 ? charCode - 26 : charCode);
+        } else if (charCode >= 110 && charCode <= 135) {
+            result += String.fromCharCode(charCode > 122 ? charCode - 26 : charCode);
+        } else {
+            result += str[i];
+        }
+    }
+    return result;
+
 }
 
 /**
