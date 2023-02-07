@@ -518,7 +518,13 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  throw new Error('Not implemented');
+  return array.reduce((res, item) => {
+    if (!res.has(keySelector(item))) {
+      res.set(keySelector(item), []);
+    }
+    res.get(keySelector(item)).push(valueSelector(item));
+    return res;
+  }, new Map());
 }
 
 /**
