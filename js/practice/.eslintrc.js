@@ -16,5 +16,11 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
+    'max-len': ['error', { code: 120 }],
+    'no-unused-vars': 'off',
+    'arrow-parens': 'off',
+    'no-confusing-arrow': 'off',
+    'no-plusplus': 'off',
+    'no-param-reassign': 'off',
   },
 };
