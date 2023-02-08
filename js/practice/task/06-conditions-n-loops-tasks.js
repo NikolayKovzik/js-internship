@@ -217,7 +217,10 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  throw new Error('Not implemented');
+  return `${isStartIncluded ? '[' : '('}`
+    + `${a < b ? a : b}, `
+    + `${b > a ? b : a}`
+    + `${isEndIncluded ? ']' : ')'}`;
 }
 
 /**
