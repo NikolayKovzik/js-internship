@@ -49,7 +49,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-  throw new Error('Not implemented');
+  return /^(r|s|pi).+/;
 }
 
 /**
