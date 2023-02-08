@@ -78,13 +78,13 @@ function timeSpanToString(startDate, endDate) {
   const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString();
   const milliseconds = (diff % 1000).toString();
   return `${hours.length === 1 ? `0${hours}` : hours}:`
-   + `${minutes.length === 1 ? `0${minutes}` : minutes}:`
-   + `${seconds.length === 1 ? `0${seconds}` : seconds}.`
-   + `${milliseconds.length === 1
-     ? `00${milliseconds}`
-     : milliseconds.length === 2
-       ? `0${milliseconds}`
-       : `${milliseconds}`}`;
+    + `${minutes.length === 1 ? `0${minutes}` : minutes}:`
+    + `${seconds.length === 1 ? `0${seconds}` : seconds}.`
+    + `${milliseconds.length === 1
+      ? `00${milliseconds}`
+      : milliseconds.length === 2
+        ? `0${milliseconds}`
+        : `${milliseconds}`}`;
 }
 
 /**
@@ -101,7 +101,14 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-  throw new Error('Not implemented');
+  const dateObj = new Date(date);
+  const minutes = dateObj.getUTCMinutes();
+  const hours = dateObj.getUTCHours();
+  const minHand = (360 / 60) * minutes;
+  const hourHand = (360 / 12) * (hours > 12 ? hours - 12 : hours) + (minutes / 60) * (360 / 12);
+  const angle = Math.abs(hourHand - minHand);
+  const deg = Math.min(angle, 360 - angle);
+  return (deg / 180) * Math.PI;
 }
 
 module.exports = {
