@@ -109,7 +109,8 @@ function getRegexForSSN() {
  *   'Pa55'.match(validator) => false
  */
 function getPasswordValidator(minLength) {
-  throw new Error('Not implemented');
+  // eslint-disable-next-line max-len
+  return new RegExp(`^(?![A-Z0-9]{${minLength},}$)(?![a-z0-9]{${minLength},}$)(?![A-Z]{${minLength},}$)(?![0-9]{${minLength},}$)[a-zA-Z0-9]{${minLength},}`);
 }
 
 module.exports = {
