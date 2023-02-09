@@ -215,7 +215,9 @@ function isPrime(n) {
     let div = 2;
     let isNumPrime = true;
     while (div * div <= n && isNumPrime) {
-        (n % div == 0) ? isNumPrime = false : ++div;
+        if (n % div == 0) {
+            isNumPrime = false
+        } else ++div
     }
 
     return isNumPrime;
