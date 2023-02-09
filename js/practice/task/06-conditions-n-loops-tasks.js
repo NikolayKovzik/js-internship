@@ -50,9 +50,9 @@ function getFizzBuzz(num) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(n) {
+function getFactorial(num) {
   let res = 1;
-  for (let i = 2; i <= n; i++) {
+  for (let i = 2; i <= num; i++) {
     res *= i;
   }
   return res;
@@ -70,9 +70,9 @@ function getFactorial(n) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(n1, n2) {
+function getSumBetweenNumbers(num1, num2) {
   let sum = 0;
-  for (let i = n1; i <= n2; i++) {
+  for (let i = num1; i <= num2; i++) {
     sum += i;
   }
   return sum;
@@ -184,14 +184,14 @@ function isInsideCircle(circle, point) {
  */
 function findFirstSingleChar(str) {
   let res = null;
-  const arr = str.split('');
-  for (let i = 0; i < str.length; i += 1) {
-    const values = arr.filter((l) => l === str[i]);
+  const charsArray = str.split('');
+  charsArray.some((_, index) => {
+    const values = charsArray.filter((char) => char === str[index]);
     if (!res && values.length === 1) {
-      res = str[i];
-      break;
+      res = str[index];
     }
-  }
+    return !!res;
+  });
   return res;
 }
 
@@ -217,10 +217,11 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  return `${isStartIncluded ? '[' : '('}`
-    + `${a < b ? a : b}, `
-    + `${b > a ? b : a}`
-    + `${isEndIncluded ? ']' : ')'}`;
+  const openBracket = `${isStartIncluded ? '[' : '('}`;
+  const closeBracket = `${isEndIncluded ? ']' : ')'}`;
+  const firstElem = `${a < b ? a : b}, `;
+  const secondElem = `${b > a ? b : a}`;
+  return openBracket + firstElem + secondElem + closeBracket;
 }
 
 /**
@@ -279,10 +280,10 @@ function reverseInteger(num) {
 function isCreditCardNumber(ccn) {
   const ccnStr = `${ccn}`;
   let acc = 0;
-  for (let i = ccnStr.length - 1; i >= 0; i--) {
-    const j = ccnStr.length - i - 1;
-    let num = ccnStr[i];
-    if (j % 2) {
+  for (let reverseInd = ccnStr.length - 1; reverseInd >= 0; reverseInd--) {
+    const ind = ccnStr.length - reverseInd - 1;
+    let num = ccnStr[reverseInd];
+    if (ind % 2) {
       num = `${num * 2}`;
     }
     acc += (num > 9 ? +num[0] + +num[1] : +num);
