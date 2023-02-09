@@ -77,14 +77,17 @@ function timeSpanToString(startDate, endDate) {
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString();
   const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString();
   const milliseconds = (diff % 1000).toString();
-  return `${hours.length === 1 ? `0${hours}` : hours}:`
-    + `${minutes.length === 1 ? `0${minutes}` : minutes}:`
-    + `${seconds.length === 1 ? `0${seconds}` : seconds}.`
-    + `${milliseconds.length === 1
-      ? `00${milliseconds}`
-      : milliseconds.length === 2
-        ? `0${milliseconds}`
-        : `${milliseconds}`}`;
+  const formatedHours = `${hours.length === 1 ? `0${hours}` : hours}:`;
+  const formatedMinutes = `${minutes.length === 1 ? `0${minutes}` : minutes}:`;
+  const formatedSeconds = `${seconds.length === 1 ? `0${seconds}` : seconds}.`;
+  let formatedMilliseconds = `${milliseconds}`;
+  if (formatedMilliseconds.length === 1) {
+    formatedMilliseconds = `00${formatedMilliseconds}`;
+  }
+  if (formatedMilliseconds.length === 2) {
+    formatedMilliseconds = `0${formatedMilliseconds}`;
+  }
+  return formatedHours + formatedMinutes + formatedSeconds + formatedMilliseconds;
 }
 
 /**
