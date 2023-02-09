@@ -299,7 +299,7 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-  return arr.reduce((res, item) => typeof item === 'number' && item > 0 ? res + 1 : res, 0);
+  return arr.filter((item) => typeof item === 'number' && item > 0).length;
 }
 
 /**
