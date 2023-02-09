@@ -388,7 +388,29 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-  throw new Error('Not implemented');
+  const diff = endDate - startDate;
+
+  if (diff <= 45 * 1000) { return 'a few seconds ago'; }
+
+  if (diff <= 90 * 1000) { return 'a minute ago'; }
+
+  if (diff <= 45 * 60 * 1000) { return (`${Math.round((diff - 1) / 60 / 1000)} minutes ago`); }
+
+  if (diff <= 90 * 60 * 1000) { return 'an hour ago'; }
+
+  if (diff <= 22 * 60 * 60 * 1000) { return (`${Math.round((diff - 1) / 60 / 60 / 1000)} hours ago`); }
+
+  if (diff <= 36 * 60 * 60 * 1000) { return 'a day ago'; }
+
+  if (diff <= 25 * 24 * 60 * 60 * 1000) { return (`${Math.round((diff - 1) / 24 / 60 / 60 / 1000)} days ago`); }
+
+  if (diff <= 45 * 24 * 60 * 60 * 1000) { return 'a month ago'; }
+
+  if (diff <= 345 * 24 * 60 * 60 * 1000) { return (`${Math.round(diff / 30 / 24 / 60 / 60 / 1000)} months ago`); }
+
+  if (diff <= 545 * 24 * 60 * 60 * 1000) { return 'a year ago'; }
+
+  return (`${Math.round(diff / 365 / 24 / 60 / 60 / 1000)} years ago`);
 }
 
 /**
