@@ -529,7 +529,33 @@ function getMatrixProduct(matrix1, matrix2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-  throw new Error('Not implemented');
+  let result;
+  const arr = position;
+
+  const checkForRowWinner = (i, j) => j === 0 && arr[i][j] === arr[i][j + 1] && arr[i][j] === arr[i][j + 2];
+
+  const checkForColumnWinner = (i, j) => i === 0 && arr[i][j] === arr[i + 1][j] && arr[i][j] === arr[i + 2][j];
+
+  const checkForDiagonalWinner = () => arr[0][0] === arr[1][1] && arr[1][1] === arr[2][2];
+
+  const checkForReverseDiagonalWinner = () => arr[2][0] === arr[1][1] && arr[1][1] === arr[0][2];
+
+  if (checkForDiagonalWinner() || checkForReverseDiagonalWinner()) {
+    return arr[1][1];
+  }
+
+  for (let i = 0; i < 3; i++) {
+    if (arr[0][i] !== undefined && checkForColumnWinner(0, i)) {
+      result = arr[0][i];
+      break;
+    }
+    if (arr[i][0] !== undefined && checkForRowWinner(i, 0)) {
+      // eslint-disable-next-line prefer-destructuring
+      result = arr[i][0];
+      break;
+    }
+  }
+  return result;
 }
 
 module.exports = {
