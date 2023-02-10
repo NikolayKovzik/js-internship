@@ -191,7 +191,8 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-  throw new Error('Not implemented');
+  let invokeCount = startFrom - 1;
+  return () => ++invokeCount;
 }
 
 module.exports = {
