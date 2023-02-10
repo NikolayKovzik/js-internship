@@ -22,5 +22,6 @@ module.exports = {
     'no-confusing-arrow': 'off',
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
+    'no-nested-ternary': 'off',
   },
 };

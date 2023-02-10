@@ -1,13 +1,10 @@
-'use strict';
-
-/********************************************************************************************
+/** ******************************************************************************************
  *                                                                                          *
  * Plese read the following tutorial before implementing tasks:                             *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates#Date_object
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date    *
  *                                                                                          *
- ********************************************************************************************/
-
+ ******************************************************************************************* */
 
 /**
  * Parses a rfc2822 string date representation into date value
@@ -22,7 +19,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   throw new Error('Not implemented');
+  return new Date(value);
 }
 
 /**
@@ -37,9 +34,8 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   throw new Error('Not implemented');
+  return new Date(value);
 }
-
 
 /**
  * Returns true if specified date is leap year and false otherwise
@@ -56,9 +52,9 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-   throw new Error('Not implemented');
+  const year = new Date(date).getFullYear();
+  return (!(year % 4) && !!(year % 100)) || !(year % 400);
 }
-
 
 /**
  * Returns the string represention of the timespan between two dates.
@@ -76,14 +72,28 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   throw new Error('Not implemented');
+  const diff = endDate - startDate;
+  const hours = Math.floor(diff / (1000 * 60 * 60)).toString();
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString();
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString();
+  const milliseconds = (diff % 1000).toString();
+  const formatedHours = `${hours.length === 1 ? `0${hours}` : hours}:`;
+  const formatedMinutes = `${minutes.length === 1 ? `0${minutes}` : minutes}:`;
+  const formatedSeconds = `${seconds.length === 1 ? `0${seconds}` : seconds}.`;
+  let formatedMilliseconds = `${milliseconds}`;
+  if (formatedMilliseconds.length === 1) {
+    formatedMilliseconds = `00${formatedMilliseconds}`;
+  }
+  if (formatedMilliseconds.length === 2) {
+    formatedMilliseconds = `0${formatedMilliseconds}`;
+  }
+  return formatedHours + formatedMinutes + formatedSeconds + formatedMilliseconds;
 }
-
 
 /**
  * Returns the angle (in radians) between the hands of an analog clock for the specified Greenwich time.
  * If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
- * 
+ *
  * @param {date} date
  * @return {number}
  *
@@ -94,14 +104,20 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-    throw new Error('Not implemented');
+  const dateObj = new Date(date);
+  const minutes = dateObj.getUTCMinutes();
+  const hours = dateObj.getUTCHours();
+  const minHand = (360 / 60) * minutes;
+  const hourHand = (360 / 12) * (hours > 12 ? hours - 12 : hours) + (minutes / 60) * (360 / 12);
+  const angle = Math.abs(hourHand - minHand);
+  const deg = Math.min(angle, 360 - angle);
+  return (deg / 180) * Math.PI;
 }
 
-
 module.exports = {
-    parseDataFromRfc2822: parseDataFromRfc2822,
-    parseDataFromIso8601: parseDataFromIso8601,
-    isLeapYear: isLeapYear,
-    timeSpanToString: timeSpanToString,
-    angleBetweenClockHands: angleBetweenClockHands
+  parseDataFromRfc2822,
+  parseDataFromIso8601,
+  isLeapYear,
+  timeSpanToString,
+  angleBetweenClockHands,
 };
