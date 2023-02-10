@@ -8,12 +8,14 @@
   "scripts": {
     "test": "mocha",
     "test-debug": "./node_modules/.bin/mocha --debug",
-    "eslint-js": "eslint --config ./.eslintrc.js ./task/**/**.js"
+    "eslint-js": "node node_modules/eslint/bin/eslint.js ./task"
   },
   "author": "aorgish",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "mocha": "^8.0.1",
     "mocha-eslint": "^6.0.0"
   },
