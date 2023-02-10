@@ -23,5 +23,6 @@ module.exports = {
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
     'consistent-return': 'off',
+    'no-nested-ternary': 'off',
   },
 };

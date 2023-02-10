@@ -1,12 +1,9 @@
-'use strict';
-
-/********************************************************************************************
+/** ******************************************************************************************
  *                                                                                          *
  * Plese read the following tutorial before implementing tasks:                             *
  * https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions           *
  *                                                                                          *
- ********************************************************************************************/
-
+ ******************************************************************************************* */
 
 /**
  * Returns the regexp that matches a GUID string representation
@@ -31,9 +28,8 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-   throw new Error('Not implemented');
+  return /{[0-9A-Fa-f]{8}(-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}\}/;
 }
-
 
 /**
  * Returns the regexp that matches all the strings from first column
@@ -53,9 +49,8 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+  return /^(r|s|pi).+/;
 }
-
 
 /**
  * Returns the regexp that matches all IPv4 strings in
@@ -72,9 +67,8 @@ function getRegexForPitSpot() {
  * @return {RegExp}
  */
 function getRegexForIPv4() {
-   throw new Error('Not implemented');
+  return /^(([0-2][0-9]{0,2}\.)|([0-9]{1,2}\.)){3}(([0-2][0-9]{0,2})|([0-9]{1,2}))$/;
 }
-
 
 /**
  * Returns the regexp that matches all SSN (Social Security Number) codes in
@@ -91,9 +85,8 @@ function getRegexForIPv4() {
  * @return {RegExp}
  */
 function getRegexForSSN() {
-   throw new Error('Not implemented');
+  return /((^(?!000)[0-9]{3}-)(?!00)[0-9]{2}-)(?!0000)[0-9]{4}/;
 }
-
 
 /**
  * Returns the password validator regex.
@@ -116,14 +109,14 @@ function getRegexForSSN() {
  *   'Pa55'.match(validator) => false
  */
 function getPasswordValidator(minLength) {
-   throw new Error('Not implemented');
+  // eslint-disable-next-line max-len
+  return new RegExp(`^(?![A-Z0-9]{${minLength},}$)(?![a-z0-9]{${minLength},}$)(?![A-Z]{${minLength},}$)(?![0-9]{${minLength},}$)[a-zA-Z0-9]{${minLength},}`);
 }
 
-
 module.exports = {
-    getRegexForGuid: getRegexForGuid,
-    getRegexForPitSpot: getRegexForPitSpot,
-    getRegexForIPv4: getRegexForIPv4,
-    getRegexForSSN: getRegexForSSN,
-    getPasswordValidator: getPasswordValidator
+  getRegexForGuid,
+  getRegexForPitSpot,
+  getRegexForIPv4,
+  getRegexForSSN,
+  getPasswordValidator,
 };
