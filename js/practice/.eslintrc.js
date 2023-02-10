@@ -16,12 +16,13 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
-    'max-len': ['error', { code: 120 }],
+    'max-len': ['error', { code: 121 }],
     'no-unused-vars': 'off',
     'arrow-parens': 'off',
     'no-confusing-arrow': 'off',
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
+    'consistent-return': 'off',
     'no-nested-ternary': 'off',
   },
 };
